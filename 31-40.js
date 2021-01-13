@@ -157,3 +157,106 @@
   console.log(b(10));
   console.log(c(10));
 }
+
+// -----------------------------------------------------------------------------------
+
+// 문제36: 구구단 출력하기
+// 1~9까지의 숫자 중 하나를 입력하면 그 단의 구구단 결과를 한 줄에 출력하는 프로그램을 작성하세요.
+
+// - 입출력
+// 입력 : 2
+// 출력 : 2 4 6 8 10 12 14 16 18
+
+// 내가 쓴 답안
+{
+  const input = prompt("숫자를 입력하세요.");
+  let gugudan = [];
+
+  for (let i = 1; i < 10; i++) {
+    data = input * i;
+    gugudan.push(data);
+  }
+  console.log(gugudan.join(" "));
+}
+
+// 정답
+{
+  const num = prompt("1 ~ 9까지의 숫자 중 하나를 입력하세요.");
+  let result = "";
+
+  for (let i = 1; i <= 9; i++) {
+    result += i * num + " ";
+  }
+
+  console.log(result);
+}
+
+// -----------------------------------------------------------------------------------
+
+// 문제37: 반장선거
+// 학생들이 뽑은 후보들을 입력받으면 뽑힌 학생의 이름과 받은 표 수를 출력하는 프로그램을 작성하세요.
+
+// - 입출력
+// 입력
+// 원범 원범 혜원 혜원 혜원 혜원 유진 유진
+//
+// 출력
+// 혜원(이)가 총 4표로 반장이 되었습니다.
+
+// 내가 쓴 답안
+
+{
+  const candidates = prompt("학생들이 뽑은 후보들을 입력하세요.").split(" ");
+  const set = Array.from(new Set(candidates));
+
+  // 각 후보별 표의 수
+  const vote = candidates.reduce((allCandidates, candidate) => {
+    if (candidate in allCandidates) {
+      allCandidates[candidate] += 1;
+    } else {
+      allCandidates[candidate] = 1;
+    }
+
+    return allCandidates;
+  }, {});
+
+  // 선출된 후보
+  const maxCondidate = (values) => {
+    let max = 0;
+    let leader = null;
+
+    for (const [key, value] of Object.entries(values)) {
+      if (max < value) {
+        max = value;
+        leader = key;
+      }
+    }
+    return leader;
+  };
+
+  // 선출된 후보의 표
+  const maxVote = Math.max.apply(null, Object.values(vote));
+
+  // 결과
+  console.log(
+    `${maxCondidate(vote)}(이)가 총 ${maxVote}표로 반장이 되었습니다.`
+  );
+}
+
+// 정답
+{
+  const array = prompt("이름을 입력해주세요.").split(" ");
+  let result = {};
+  let winner = "";
+
+  for (let index in array) {
+    let val = array[index];
+    result[val] = result[val] === undefined ? 1 : (result[val] += 1);
+  }
+
+  winner = Object.keys(result).reduce(function (a, b) {
+    return result[a] > result[b] ? a : b;
+  });
+
+  console.log(`${winner}(이)가 총 ${result[winner]}표로 반장이 되었습니다.`);
+}
