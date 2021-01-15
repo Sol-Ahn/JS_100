@@ -312,18 +312,116 @@
   scores.sort((a, b) => {
     return a - b;
   });
-  console.log(scores);
 
   let count = 0;
   let arr = [];
 
   while (arr.length < 3) {
     let n = scores.pop();
-    console.log(n);
     if (!arr.includes(n)) {
       arr.push(n);
     }
     count += 1;
+  }
+
+  console.log(count);
+}
+
+// -----------------------------------------------------------------------------------
+
+// 문제39: 오타 수정하기
+// 문장이 입력되면 모든 q를 e로 바꾸는 프로그램을 작성하세요.
+
+// - 입출력
+// 입력 : querty
+// 출력 : euerty
+// 입력 : hqllo my namq is hyqwon
+// 출력 : hello my name is hyewon
+
+// 내가 쓴 답안
+{
+  const data = prompt("문장을 입력하세요.");
+  const fixedData = data.replaceAll("q", "e");
+  console.log(fixedData);
+}
+
+// 정답
+{
+  // 함수 사용
+  const word = prompt("입력하세요.");
+
+  function replaceAll(str, searchStr, replaceStr) {
+    return str.split(searchStr).join(replaceStr);
+  }
+
+  console.log(replaceAll(word, "q", "e"));
+
+  // 정규식 사용
+  //   const word = prompt("입력하세요.");
+
+  //   console.log(word.replace(/q/gi, "e"));
+  //
+}
+
+// -----------------------------------------------------------------------------------
+
+// 문제40: 놀이동산에 가자
+// 모든 놀이기구는 한번에 타는 인원수에는 제한이 없지만 제한 무게를 넘으면 무조건 다음 기구를 타야 합니다.
+// 첫번째 입력으로 제한 무게가 주어지고 두번째 입력으로는 함께 타는 사람들의 수 n이 주어집니다.
+// 그 다음 차례대로 탑승할 사람들의 몸무게가 주어집니다. 몸무게는 무작위로 주어집니다.
+// 총 몇 명 탈 수 있는지 알 수 있는 프로그램을 작성하세요.
+
+// - 입출력
+// 입력
+// 50
+// 5
+// 20
+// 20
+// 20
+// 20
+// 20
+
+// 출력
+// 2
+
+// 내가 쓴 답안
+{
+  const limitedWeight = parseInt(prompt("제한 무게"), 10);
+  const n = parseInt(prompt("탑승할 사람의 수"), 10);
+
+  const weights = [];
+  let i = 1;
+  while (i <= n) {
+    const weight = parseInt(prompt("탑승할 사람들의 무게"), 10);
+    weights.push(weight);
+    i += 1;
+  }
+
+  // 탑승할 수 있는 사람의 수
+  let sum = 0;
+  let count = 0;
+  for (let i = 0; i < weights.length; i++) {
+    sum += weights[i];
+    while (sum <= limitedWeight) {
+      count += 1;
+      break;
+    }
+  }
+  console.log(count);
+}
+
+// 정답
+{
+  let total = 0;
+  let count = 0;
+  const limit = prompt("제한 무게를 입력하세요.");
+  const n = prompt("인원수를 입력하세요.");
+
+  for (let i = 1; i <= n; i++) {
+    total += parseInt(prompt("무게를 입력해주세요."), 10);
+    if (total <= limit) {
+      count = i;
+    }
   }
 
   console.log(count);
