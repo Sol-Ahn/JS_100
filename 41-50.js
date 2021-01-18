@@ -115,3 +115,66 @@
 
   console.log(result);
 }
+
+// -----------------------------------------------------------
+
+// 문제44: 각 자리수의 합
+// 사용자가 입력한 양의 정수의 각 자리수의 합을 구하는 프로그램을 만들어주세요
+
+/* - 입출력
+    입력 : 18234
+    출력 : 18
+
+    입력 : 3849
+    출력 : 24
+*/
+
+// 내가 쓴 답안
+{
+  const num = prompt("양의 정수를 입력하세요.").split("");
+  let sum = 0;
+  for (let i = 0; i < num.length; i++) {
+    sum += parseInt(num[i], 10);
+  }
+
+  console.log(sum);
+}
+
+// 정답
+{
+  let n = prompt("숫자를 입력하세요.");
+  let sum = 0;
+
+  while (n !== 0) {
+    sum += n % 10;
+    console.log(sum);
+    n = Math.floor(n / 10);
+    console.log(n);
+  }
+
+  console.log(sum);
+}
+
+// -----------------------------------------------------------
+
+// 문제45: getTime()함수 사용하기
+// Date객체의 메소드 중 하나인 getTime()은 1970년 1월 1일 0시 0분 0초 이후로부터
+// 지금까지 흐른 시간을 천분의 1초 단위(ms)로 반환합니다.
+// 이를 이용하여 현재 연도(2021)를 출력해보세요.
+
+// 내가 쓴 답안
+{
+  const date = new Date();
+  console.log(`현재 연도는 ${date.getFullYear()} 입니다.`);
+}
+
+// 정답
+{
+  const d = new Date();
+
+  let year = d.getTime();
+  year = Math.floor(year / (3600 * 24 * 365 * 1000)) + 1970;
+  // 60초 * 60분 * 24시간 * 365일 * 1000
+
+  console.log(year);
+}
