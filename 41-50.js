@@ -178,3 +178,43 @@
 
   console.log(year);
 }
+
+// -----------------------------------------------------------
+
+// 문제46: 각 자리수의 합 2
+// 1부터 20까지의(20을 포함) 모든 숫자를 일렬로 놓고 모든 자릿수의 총 합을 구하세요.
+
+// 내가 쓴 답안
+// 자릿수를 고려하지 않은 로직
+{
+  let nums = [];
+  for (let i = 0; i < 20; i++) {
+    nums[i] = i + 1;
+  }
+
+  let sum = 0;
+  for (let j = 0; j < nums.length; j++) {
+    sum += nums[j];
+  }
+
+  console.log(sum); // 210
+}
+
+// 정답
+{
+  let arr = [];
+  let sum = 0;
+
+  for (let i = 0; i < 20; i++) {
+    arr[i] = i + 1;
+  }
+
+  arr.forEach((n) => {
+    while (n !== 0) {
+      sum += n % 10;
+      n = Math.floor(n / 10);
+    }
+  });
+
+  console.log(sum); // 102
+}
