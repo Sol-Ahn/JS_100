@@ -251,3 +251,47 @@ const people = {
   }
   console.log(result.size); // size는 set 객체에 있는 값의 개수를 반환
 }
+
+// -----------------------------------------------------------
+
+// 문제48: 대소문자 바꿔서 출력하기
+// 문자열이 주어지면 대문자와 소문자를 바꿔서 출력하는 프로그램을 작성하세요.
+
+// - 입출력
+// 입력 : AAABBBcccddd
+// 출력 : aaabbbCCCDDD
+
+// 내가 쓴 답안
+{
+  const string = prompt("문자열을 입력하세요.").split("");
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] === string[i].toUpperCase()) {
+      string[i] = string[i].toLowerCase();
+    } else (string[i] === string[i].toLowerCase()) {
+      string[i] = string[i].toUpperCase();
+    }
+  }
+  console.log(string.join(""));
+}
+
+// 정답
+{
+  let a = prompt("문자열을 입력하세요.");
+  let b = [];
+  let s = "";
+
+  for (let i = 0; i < a.length; i++) {
+    //toLowerCase() 메서드는 문자열을 소문자로, toUpperCase() 메서드는 문자열을 대문자로 변환하여 반환
+    if (a[i] === a[i].toLowerCase()) {
+      b.push(a[i].toUpperCase());
+    } else {
+      b.push(a[i].toLowerCase());
+    }
+  }
+
+  for (let j = 0; j < b.length; j++) {
+    s += b[j];
+  }
+
+  console.log(s);
+}
