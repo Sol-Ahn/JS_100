@@ -267,7 +267,7 @@ const people = {
   for (let i = 0; i < string.length; i++) {
     if (string[i] === string[i].toUpperCase()) {
       string[i] = string[i].toLowerCase();
-    } else (string[i] === string[i].toLowerCase()) {
+    } else if (string[i] === string[i].toLowerCase()) {
       string[i] = string[i].toUpperCase();
     }
   }
@@ -294,4 +294,93 @@ const people = {
   }
 
   console.log(s);
+}
+
+// -----------------------------------------------------------
+
+// 문제49: 최댓값 구하기
+// 순서가 없는 10개의 숫자가 공백으로 구분되어 주어집니다. 주어진 숫자들 중 최댓값을 반환하세요.
+// - 입출력
+// 입력 : 10 9 8 7 6 5 4 3 2 1
+// 출력 : 10
+
+// 내가 쓴 답안 - Math.max 함수 사용
+{
+  const data = prompt("숫자 10개를 입력하세요.").split(" "); // 데이터타입 고려 X
+  const max = Math.max(...data);
+  console.log(max);
+}
+
+// 정답 - 정렬함수 사용
+{
+  let numbers = prompt("10개의 숫자를 입력하세요")
+    .split(" ")
+    .map((n) => {
+      return parseInt(n, 10);
+    });
+
+  numbers.sort((a, b) => {
+    return b - a;
+  });
+
+  console.log(numbers[0]);
+}
+
+// -----------------------------------------------------------
+
+// 문제50: 버블정렬 구현하기
+// 아래 코드의 빈 칸을 채워 버블 정렬을 완성해 봅시다.
+
+// 내가 쓴 답안
+{
+  function bubble(arr) {
+    let result = arr.slice();
+
+    for (let i = 0; i < result.length - 1; i++) {
+      // 빈칸을 채워주세요.
+      for (let j = 0; j < result.length - 1 - i; j++) {
+        if (result[j] > result[j + 1]) {
+          //빈칸을 채워주세요.
+          let swap = result[j];
+          result[j] = result[j + 1];
+          result[j + 1] = swap;
+        }
+      }
+    }
+    return result;
+  }
+
+  const items = prompt("입력해주세요.")
+    .split(" ")
+    .map((n) => {
+      return parseInt(n, 10);
+    });
+
+  console.log(bubble(items));
+}
+
+// 정답
+{
+  function bubble(arr) {
+    let result = arr.slice(); // 원본 배열 복사
+
+    for (let i = 0; i < result.length - 1; i++) {
+      for (let j = 0; j < result.length - i; j++) {
+        if (result[j] > result[j + 1]) {
+          let temp = result[j];
+          result[j] = result[j + 1];
+          result[j + 1] = temp;
+        }
+      }
+    }
+    return result;
+  }
+
+  const items = prompt("입력해주세요.")
+    .split(" ")
+    .map((n) => {
+      return parseInt(n, 10);
+    });
+
+  console.log(bubble(items));
 }
