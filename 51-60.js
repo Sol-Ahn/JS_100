@@ -219,3 +219,53 @@
     console.log("NO");
   }
 }
+
+// --------------------------------------------------------------------------------------
+
+// 문제54: 연속되는 수
+// 스탬프에 적힌 숫자가 공백으로 구분되어 주어지면 이 숫자가 연속수인지 아닌지 "YES"와 "NO"로 판별하는 프로그램을 작성하세요.
+
+// 입출력
+/*
+입력1: 1 2 3 4 5
+출력1: YES
+
+입력2: 1 4 2 6 3
+출력2: NO
+*/
+
+// 내가 쓴 답안 => 판별 실패..
+{
+  const stamp = prompt("스탬프 숫자")
+    .split(" ")
+    .map((n) => parseInt(n, 10));
+
+  for (let i = 0; i < stamp.length; i++) {
+    if (stamp[i + 1] === stamp[i] + 1) console.log("YES");
+    else console.log("NO");
+  }
+}
+// 정답 => 함수 활용 잊지 말자!
+{
+  function sol(l) {
+    l.sort((a, b) => {
+      // 오름차순 정렬
+      return a - b;
+    });
+
+    for (let i = 0; i <= l.length - 1; i++) {
+      if (l[i] + 1 !== l[i + 1]) {
+        // 연속되는 숫자 판별
+        return "NO";
+      } else {
+        return "YES";
+      }
+    }
+  }
+
+  const n = prompt("입력해주세요")
+    .split(" ")
+    .map((n) => parseInt(n, 10));
+
+  console.log(sol(n));
+}
